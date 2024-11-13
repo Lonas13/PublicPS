@@ -1,4 +1,4 @@
-﻿# Load necessary assemblies for GUI components
+# Load necessary assemblies for GUI components
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
