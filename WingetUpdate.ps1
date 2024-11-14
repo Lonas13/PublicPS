@@ -33,7 +33,7 @@ if (-not $wingetInstalled) {
 Add-Type -AssemblyName PresentationFramework
 
 # Get the list of installed applications
-Get-WinGetPackage -OutVariable apps
+Get-WinGetPackage -OutVariable apps | Out-Null
 $apps = $apps | Select-Object -Property Name, Id, InstalledVersion
 
 # Create the WPF window
