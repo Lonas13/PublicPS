@@ -1,4 +1,3 @@
-﻿# Import the necessary module
 Install-Module Microsoft.Winget.Client
 Import-Module Microsoft.Winget.Client
 
