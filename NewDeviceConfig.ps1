@@ -1,6 +1,6 @@
 set-executionpolicy -executionpolicy remotesigned -force
 
-﻿<#
+<#
 (New-Object System.Net.WebClient).DownloadFile("https://zinfandel.centrastage.net/csm/profile/downloadAgent/23b43566-f401-43c3-a09a-2135bfb66bf3", "$env:TEMP/AgentInstall.exe");start-process "$env:TEMP/AgentInstall.exe"
 #>
 
@@ -71,12 +71,30 @@ function Set-RegistryValue {
     New-ItemProperty -Path $Path -Name $Name -PropertyType $Type -Value $Value -Force | Out-Null
 }
 
-    # Step 1: Block the New Outlook Toggle
+    # Step 7: Block the New Outlook Toggle
 Set-RegistryValue -Path "HKCU:\Software\Microsoft\Office\16.0\Outlook\Options\General" -Name "HideNewOutlookToggle" -Value 0
 
 
-
-
+# Step 8: Restart explorer.exe to apply all changes
 get-process explorer | foreach-object {stop-process $_}
 
 Write-Output "All configurations applied successfully!"
+
+
+
+# Step 9: Check if Dell Command Update is installed and run
+
+
+# Define the path to the Dell Command Update executable
+$dcuPath = "C:\Program Files (x86)\Dell\CommandUpdate\dcu-cli.exe"
+
+if (Test-Path $dcuPath) {
+    Write-Output "Dell Command Update found. Running updates..."
+    
+    # Run Dell Command Update to apply updates and allow reboot if necessary
+    Start-Process -FilePath $dcuPath -ArgumentList "/applyUpdates -autoSuspendBitLocker=enable -reboot=enable" -Wait
+    Write-Output "Updates applied. System may reboot if necessary."
+} else {
+    Write-Output "Dell Command Update not found. Please install it first."
+}# Define the path to the Dell Command Update executable
+$dcuPath = "C:\Program Files (x86)\Dell\CommandUpdate\dcu-cli.exe"
