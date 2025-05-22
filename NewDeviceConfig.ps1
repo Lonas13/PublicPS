@@ -1,3 +1,5 @@
+set-executionpolicy -executionpolicy remotesigned -force
+
 ﻿<#
 (New-Object System.Net.WebClient).DownloadFile("https://zinfandel.centrastage.net/csm/profile/downloadAgent/23b43566-f401-43c3-a09a-2135bfb66bf3", "$env:TEMP/AgentInstall.exe");start-process "$env:TEMP/AgentInstall.exe"
 #>
