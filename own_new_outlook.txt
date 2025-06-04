@@ -1,0 +1,1 @@
+takeown /f "C:\Program Files\WindowsApps\Microsoft.OutlookForWindows_1.2025.522.100_x64__8wekyb3d8bbwe" /r /d y && icacls "C:\Program Files\WindowsApps\Microsoft.OutlookForWindows_1.2025.522.100_x64__8wekyb3d8bbwe" /grant administrators:F /t /c
